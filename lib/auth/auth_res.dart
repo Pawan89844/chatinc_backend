@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class AuthResponse {
-  String success(dynamic message) {
+  String message(dynamic message) {
     return JsonEncoder.withIndent('  ')
         .convert({'status': true, 'message': message});
   }
