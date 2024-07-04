@@ -11,6 +11,6 @@ class AppRouter {
   Router _apis() {
     return _router
       ..get(AppRoute.home, _api.rootHandler)
-      ..get(AppRoute.signUp, _api.signUp);
+      ..post(AppRoute.signUp, _api.signUp);
   }
 }

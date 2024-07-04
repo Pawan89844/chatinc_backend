@@ -9,6 +9,8 @@ import 'package:shelf/shelf_io.dart';
 //   ..get('/', _rootHandler)
 //   ..get('/echo/<message>', _echoHandler);
 
+// MOGO = mongodb+srv://pk89844:Joker@123456@chatincdb.nxf7qvu.mongodb.net/?retryWrites=true&w=majority&appName=ChatincDB
+
 void main(List<String> args) async {
   // Use any available host or container IP (usually `0.0.0.0`).
   final ip = InternetAddress.anyIPv4;
