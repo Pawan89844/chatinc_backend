@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:chatinc_backend/apis/app_headers.dart';
 import 'package:chatinc_backend/auth/auth_res.dart';
 import 'package:chatinc_backend/auth/interface/auth_interface.dart';
+import 'package:chatinc_backend/auth/model/user_model.dart';
 import 'package:chatinc_backend/service/db_services.dart';
 import 'package:realm/realm.dart';
 import 'package:shelf/shelf.dart';
@@ -11,11 +12,8 @@ class Auth extends AuthResponse implements AuthInterface {
   final DatabaseService _dbService = DatabaseService();
 
   @override
-  Future<Realm> connectDB() async {
-    User user = await _dbService.initializeDB();
-    Configuration config = Configuration.flexibleSync(user, []);
-    Realm app = Realm(config);
-    return app;
+  Realm connectDB() {
+    return _dbService.initializeCompass(UserModel.schema);
   }
 
   Response _onSuccess(Request request) {
@@ -37,8 +35,8 @@ class Auth extends AuthResponse implements AuthInterface {
   Future<Response> logic(Request request) async {
     String jsonString = await request.readAsString();
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
-    Realm realm = await connectDB();
-    print('Path: ${realm.all().first}');
+    Realm realm = connectDB();
+    // print('Path: ${realm.find(primaryKey)}');
     return validateMethod(request);
   }
 }
