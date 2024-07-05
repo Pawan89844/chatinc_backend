@@ -10,11 +10,10 @@ import 'package:shelf_router/shelf_router.dart';
 class AppApis {
   final Auth _auth = Auth();
   Response rootHandler(Request req) {
-    // _auth.connectDB();
     return Response.ok('Data');
   }
 
   Future<Response> signUp(Request request) async {
-    return Response.ok(_auth.success('connected'), headers: AppHeader.app);
+    return _auth.logic(request);
   }
 }
