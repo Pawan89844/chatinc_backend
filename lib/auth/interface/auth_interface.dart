@@ -1,7 +1,7 @@
-import 'package:realm/realm.dart';
+// import 'package:realm/realm.dart';
 
 abstract class AuthInterface {
-  Realm connectDB();
+  void connectDB();
   // void accessDB();
   // void getLoggedInUser();
 }
