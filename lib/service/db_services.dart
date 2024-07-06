@@ -8,7 +8,7 @@ class DatabaseService {
   DatabaseService._internal();
 
   factory DatabaseService() => _instance;
-  final Db _db = Db(AppConstant.dbURL);
+  late Db db;
   // final AppConfiguration appConfig = AppConfiguration(AppConstant.appId);
 
   /// This function is used for connecting mongo db atlas cloud version.
@@ -25,9 +25,8 @@ class DatabaseService {
   //   return app;
   // }
 
-  void initializeDB() async {
-    final _db = await Db.create(AppConstant.dbURL);
-    await _db.open();
-    print('Value: ${_db.databaseName}');
+  Future<dynamic> initializeDB() async {
+    db = await Db.create(AppConstant.dbURL);
+    return await db.open();
   }
 }
